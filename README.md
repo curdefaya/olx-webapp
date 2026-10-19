@@ -1,30 +1,43 @@
-# React + Vite
+# Używanie programu grozi zbanowaniem na platformie olx.pl
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-
-## Compiling web server 
-
-
+1. **Instalacja zależności systemowych:**
+   Przed utworzeniem środowiska upewnij się, że masz zainstalowany Python oraz `pip`:
+   
 ```bash
-cd /project/location
+   sudo pacman -S python python-pip
+   
 ```
 
+2. **Przygotowanie środowiska wirtualnego:**
+   Zalecane jest korzystanie z wirtualnego środowiska (`venv`), aby uniknąć błędów związanych z zarządzaniem pakietami przez system (`externally-managed-environment`):
+   
 ```bash
-npm run dev
+   python -m venv venv
+   source venv/bin/activate
+   
 ```
 
-*Get to (http://localhost:5173/)[http://localhost:5173/] for app*
+3. **Instalacja pakietów Python:**
+   Zainstaluj biblioteki `crawlee` oraz `pandas`:
+   
+```bash
+   pip install "crawlee[playwright]" pandas
+   
+```
+
+4. **Instalacja przeglądarki Chromium dla Playwright:**
+   Zainstaluj silnik przeglądarki wykorzystywany przez Playwright wraz z niezbędnymi zależnościami systemowymi:
+   
+```bash
+   playwright install --with-deps chromium
+   
+```
+
+5. **Zmiana linku w kodzie według uznania** 
+    W pliku crawler.py należy zmienić parametr START_URL znajdujący się w linii 9.
+    *W przypadku użycia input() wklejanie linku do konsoli bywa problematyczne*
+
+6. **Uruchomienie skryptu**
+    ```bash
+    python3 crawler.py
+    ```
