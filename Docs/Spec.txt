@@ -1,0 +1,26 @@
+# Specification-Driven Development (SDD) Spec - OLX Analyzer App
+
+## 1. Vision & Overview
+Aplikacja przeznaczona do automatycznego gromadzenia, filtrowania oraz analizy cenowej ogłoszeń z serwisu OLX, pozwalająca użytkownikowi identyfikować okazje rynkowe.
+
+## 2. Functional Requirements
+
+### REQ-F-001: Data Ingestion (Crawler)
+- **Opis:** System uruchamia automatyczny proces zbierania ogłoszeń z OLX (`crawler.py`).
+- **Inputs:** Kategoria, słowa kluczowe.
+- **Outputs:** Strukturyzowane dane JSON / tabela Bazy Danych.
+
+### REQ-F-002: Search & Filter
+- **Opis:** Interfejs pozwala użytkownikowi filtrować pobrane oferty wg ceny, słowa kluczowego i opcji sortowania.
+
+## 3. Non-Functional Requirements & Metrics (ISO/IEC 25002)
+
+| ID | Kategoria | Opis | Metryka / Target |
+|---|---|---|---|
+| REQ-NF-001 | Availability | Dostępność aplikacji wewn. webowej | Uptime >= 99.5% |
+| REQ-NF-002 | Reliability | Średni czas między awariami cralwera | MTBF >= 720h |
+| REQ-NF-003 | Maintainability | Średni czas naprawy awarii/modyfikacji | MTTR <= 30 min |
+| REQ-NF-004 | Performance | Czas ładowania widoku listy ogłoszeń | Latency < 200ms |
+
+## 4. User Stories & Acceptance Criteria
+Patrz dokumentacja szczegółowa w katalogu `docs/user-stories/`.
