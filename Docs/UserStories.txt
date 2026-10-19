@@ -1,0 +1,105 @@
+US-01: Przeglądanie i wyszukiwanie ogłoszeń
+
+    Jako poszukiwacz okazji na OLX,
+
+    Chcę mieć możliwość filtrowania i wyszukiwania zgromadzonych ogłoszeń po frazie kluczowej, cenie oraz kategorialnych filtrach,
+
+    Aby szybko znaleźć interesujące mnie oferty spełniające moje kryteria.
+
+    Kryteria Akceptacji (Given-When-Then):
+
+        Scenariusz 1: Wyszukiwanie po słowie kluczowym
+
+            Given użytkownik znajduje się na stronie głównej aplikacji,
+
+            When wpisze frazę „iPhone 13” w pole wyszukiwania i kliknie „Szukaj”,
+
+            Then lista wyświetlanych ogłoszeń zostanie ograniczona tylko do ofert zawierających frazę „iPhone 13” w tytule lub opisie.
+
+        Scenariusz 2: Filtrowanie zakresem cenowym
+
+            Given użytkownik wyświetla listę wszystkich ogłoszeń,
+
+            When ustawi filtr ceny minimalnej na 1000 PLN i maksymalnej na 2000 PLN,
+
+            Then system wyświetli wyłącznie ogłoszenia z ceną zawartą w przedziale od 1000 do 2000 PLN.
+
+US-02: Uruchamianie crawlera ogłoszeń
+
+    Jako analityk rynku,
+
+    Chcę móc uruchomić proces pobierania najnowszych ogłoszeń z serwisu OLX,
+
+    Aby baza danych zawierała aktualne ogłoszenia i ich ceny.
+
+    Kryteria Akceptacji (Given-When-Then):
+
+        Scenariusz 1: Pomyślne uruchomienie pobierania
+
+            Given crawler posiada skonfigurowany słownik kategorii oraz adresy URL,
+
+            When administrator uruchomi skrypt pobierający (crawler.py),
+
+            Then skrypt pobierze najnowsze ogłoszenia i zapisze je w bazie/pliku wyjściowym, wyrzucając status sukcesu.
+
+        Scenariusz 2: Obsługa braku połączenia
+
+            Given serwer crawler-a stracił połączenie z siecią Internet,
+
+            When skrypt podejmie próbę pobrania stron OLX,
+
+            Then skrypt zarejestruje błąd w logach i podejmie próbę ponownego połączenia po określonym czasie bez awarii aplikacji.
+
+US-03: Wyświetlanie szczegółów ogłoszenia i statystyk cenowych
+
+    Jako kupujący,
+
+    Chcę zobaczyć szczegółowe informacje o ogłoszeniu oraz średnią cenę dla podobnych przedmiotów,
+
+    Aby ocenić, czy dana oferta jest poniżej lub powyżej ceny rynkowej.
+
+    Kryteria Akceptacji (Given-When-Then):
+
+        Scenariusz 1: Wyświetlenie odchylenia od średniej ceny
+
+            Given użytkownik przegląda kartę konkretnego ogłoszenia o cenie 1500 PLN,
+
+            When średnia cena w kategorii wynosi 1800 PLN,
+
+            Then system wyświetli informację, że oferta jest tańsza o 16.7% od średniej rynkowej.
+
+US-04: Zapisywanie ogłoszeń do Ulubionych
+
+    Jako użytkownik aplikacji,
+
+    Chcę dodawać wybrane ogłoszenia do listy ulubionych,
+
+    Aby mieć do nich łatwy dostęp w późniejszym czasie.
+
+    Kryteria Akceptacji (Given-When-Then):
+
+        Scenariusz 1: Dodanie ogłoszenia do ulubionych
+
+            Given użytkownik przegląda listę wyników i widzi ikony serca przy ogłoszeniach,
+
+            When kliknie ikonę serca przy wybranym ogłoszeniu,
+
+            Then ikona zmieni status na zaznaczony, a ogłoszenie zostanie dodane do widoku „Ulubione”.
+
+US-05: Eksport danych i raportów rynkowych
+
+    Jako analityk,
+
+    Chcę wyeksportować przefiltrowane dane o ogłoszeniach do pliku CSV/JSON,
+
+    Aby przeprowadzić własne analizy w zewnętrznym narzędziu (np. Excel).
+
+    Kryteria Akceptacji (Given-When-Then):
+
+        Scenariusz 1: Eksport przefiltrowanej listy do CSV
+
+            Given użytkownik wyfiltrował listę ogłoszeń dla kategorii „Laptopy”,
+
+            When kliknie przycisk „Eksportuj do CSV”,
+
+            Then przeglądarka rozpocznie pobieranie pliku .csv zawierającego dokładnie ten sam zestaw danych, który jest obecnie wyświetlany.
